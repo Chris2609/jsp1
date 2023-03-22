@@ -8,10 +8,15 @@
 </head>
 <body>
 
-	<form method="POST" action="">
+	<%
+	int id = (int) request.getAttribute("id");
+	String nombre = (String) request.getAttribute("nombre");
+	%>
+
+	<form method="POST" action="ModUsuario">
 	<h3></h3>
-	<input type="hidden" name="id" value="">
-	<input type="text" name="nombre" placeholder="nombre de usuario" value=""/>
+	<input type="hidden" name="id" value="<%out.print(id);%>">
+	<input type="text" name="nombre" placeholder="nombre de usuario" value="<%out.print(nombre);%>"/>
 		
 	<input type="submit" value="Enviar"/>
 	</form>

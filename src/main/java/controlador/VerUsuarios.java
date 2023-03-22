@@ -35,7 +35,6 @@ public class VerUsuarios extends HttpServlet {
 		ModeloUsuario verUsuarios = new ModeloUsuario();
 		ArrayList<Usuario> usuarios = verUsuarios.verUsuarios();
 		
-		request.setAttribute("verUsuarios", verUsuarios);
 		request.setAttribute("usuarios", usuarios);
 
 		

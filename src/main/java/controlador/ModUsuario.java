@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.ModeloUsuario;
+import modelo.Usuario;
+
 /**
  * Servlet implementation class ModUsuario
  */
@@ -28,16 +31,26 @@ public class ModUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String id = request.getParameter("id");
-		String usuario = request.getParameter("modUsuario");
+		String nombre = request.getParameter("nombre");
 		
+		request.setAttribute("id", Integer.parseInt(id));
+		request.setAttribute("nombre", nombre);
+		
+		request.getRequestDispatcher("ModUsuario.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String id = request.getParameter("id");
+		
+		Usuario usuarioModificado = new Usuario();
+		usuarioModificado.setNombre(request.getParameter("nombre"));
+		ModeloUsuario modificarU = new ModeloUsuario();
+		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);
+		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
 	}
 
 }
