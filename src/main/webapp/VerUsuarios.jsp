@@ -21,6 +21,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Usuario</th>
+      <th scope="col">Contraseña</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
     </tr>
@@ -31,6 +32,7 @@
     <tr>
       <td><%out.println(usuario.getId()); %></td>
       <td><%out.println(usuario.getNombre()); %></td>
+      <td><%out.println(usuario.getPassword()); %></td>
       <td><a href="/JSPusuarios/ModUsuario?id=<%out.print(usuario.getId());%>&nombre=<%out.print(usuario.getNombre());%>">Modificar</a></td>
       <td><a style="color:red;" href="/JSPusuarios/Eliminar?id=<%out.print(usuario.getId());%>">Eliminar</td>
     </tr>

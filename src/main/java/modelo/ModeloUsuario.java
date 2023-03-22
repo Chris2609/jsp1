@@ -23,6 +23,7 @@ public class ModeloUsuario {
 					
 					usuario.setId(resultado.getInt("id"));
 					usuario.setNombre(resultado.getString("nombre"));
+					usuario.setPassword(resultado.getString("password"));
 					
 					usuarios.add(usuario);
 				}
