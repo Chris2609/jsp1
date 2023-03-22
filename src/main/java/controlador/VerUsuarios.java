@@ -32,6 +32,7 @@ public class VerUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		ModeloUsuario verUsuarios = new ModeloUsuario();
 		ArrayList<Usuario> usuarios = verUsuarios.verUsuarios();
 		
