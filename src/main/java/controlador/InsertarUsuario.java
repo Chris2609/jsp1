@@ -35,7 +35,6 @@ public class InsertarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("InsertarUsuario.jsp").forward(request, response);
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
 	}
 
 	/**
@@ -46,6 +45,7 @@ public class InsertarUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		Usuario nuevoUsuario = new Usuario();
 		nuevoUsuario.setNombre(request.getParameter("nuevoUsuario"));
+		nuevoUsuario.setPassword(request.getParameter("password"));
 		ModeloUsuario insertarU = new ModeloUsuario();
 		insertarU.insertarUsuario(nuevoUsuario);
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios");

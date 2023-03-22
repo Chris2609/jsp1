@@ -68,8 +68,9 @@ public class ModeloUsuario {
 		
 		PreparedStatement insertarU;
 		try {
-			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre) VALUES (?)");
+			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password) VALUES (?,?)");
 			insertarU.setString(1, usuario.getNombre());
+			insertarU.setString(2, usuario.getPassword());
 			insertarU.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
