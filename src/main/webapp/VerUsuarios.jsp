@@ -14,7 +14,7 @@
 	<%	
 	ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios"); 
 	%>
-<a href="/JSPusuarios/InsertarUsuario" style="text-decoration: none; color: green">Insertar</a>
+<a href="/JSPusuarios/InsertarUsuario" class= "btn btn-success">Insertar</a>
 <table class="table table-striped table-dark">
   <thead>
     
@@ -33,7 +33,7 @@
       <td><%out.println(usuario.getId()); %></td>
       <td><%out.println(usuario.getNombre()); %></td>
       <td><%out.println(usuario.getPassword()); %></td>
-      <td><a href="/JSPusuarios/ModUsuario?id=<%out.print(usuario.getId());%>&nombre=<%out.print(usuario.getNombre());%>">Modificar</a></td>
+      <td><a href="/JSPusuarios/ModUsuario?id=<%out.print(usuario.getId());%>&nombre=<%out.print(usuario.getNombre());%>&password=<%out.print(usuario.getPassword());%>>">Modificar</a></td>
       <td><a style="color:red;" href="/JSPusuarios/Eliminar?id=<%out.print(usuario.getId());%>">Eliminar</td>
     </tr>
     <%

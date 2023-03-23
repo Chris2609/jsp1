@@ -32,9 +32,11 @@ public class ModUsuario extends HttpServlet {
 
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
+		String password = request.getParameter("password");
 		
 		request.setAttribute("id", Integer.parseInt(id));
 		request.setAttribute("nombre", nombre);
+		request.setAttribute("password", password);
 		
 		request.getRequestDispatcher("ModUsuario.jsp").forward(request, response);
 	}
@@ -48,6 +50,7 @@ public class ModUsuario extends HttpServlet {
 		
 		Usuario usuarioModificado = new Usuario();
 		usuarioModificado.setNombre(request.getParameter("nombre"));
+		usuarioModificado.setPassword(request.getParameter("password"));
 		ModeloUsuario modificarU = new ModeloUsuario();
 		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios");

@@ -52,9 +52,10 @@ public class ModeloUsuario {
 		conexion.conectar();
 		
 		try {
-			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ? WHERE id = ?");
+			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ?, password = ? WHERE id = ?");
 			modificarU.setString(1, usuario.getNombre());
-			modificarU.setInt(2, id);
+			modificarU.setString(2, usuario.getPassword());
+			modificarU.setInt(3, id);
 			modificarU.execute();
 			
 			conexion.cerrar();
