@@ -7,9 +7,7 @@ public class Usuario {
 	int id;
 	String nombre;
 	String password;
-	Date fecha_login;
-	
-	
+	Date fecha_login;	
 	
 	public Date getFecha_login() {
 		return fecha_login;

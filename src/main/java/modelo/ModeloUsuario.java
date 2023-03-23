@@ -1,6 +1,6 @@
 package modelo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,7 +78,7 @@ public class ModeloUsuario {
 			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES (?,?,?)");
 			insertarU.setString(1, usuario.getNombre());
 			insertarU.setString(2, usuario.getPassword());
-			
+			insertarU.setDate(3, new Date(usuario.getFecha_login().getTime()));
 			insertarU.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
