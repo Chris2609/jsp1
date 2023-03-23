@@ -15,6 +15,8 @@
 </head>
 <body>
   <style>
+  *{
+  margin: 10px}
         form i {
             margin-left: -30px;
             cursor: pointer;
@@ -23,11 +25,16 @@
 	<form method="post" action="InsertarUsuario">
 	<p>
 	<input type="text" name="nuevoUsuario" placeholder="Nuevo usuario">
-
 	</p>  
-     <input type="password" name="password" id="password" placeholder="Contraseña" />
+    
+    <p>
+    <input type="password" name="password" id="password" placeholder="Contraseña" />
      	<i class="bi bi-eye-slash" id="togglePassword"></i>
-          
+       </p>
+       
+      <p>   
+     <input type="date" name="fecha_login" pattern="yyyy-MM-dd">
+       </p>
 	<input type="submit" value="Enviar"/>
 	
 	</form>

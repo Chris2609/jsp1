@@ -1,7 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.Date;
 import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,6 +49,10 @@ public class InsertarUsuario extends HttpServlet {
 		Usuario nuevoUsuario = new Usuario();
 		nuevoUsuario.setNombre(request.getParameter("nuevoUsuario"));
 		nuevoUsuario.setPassword(request.getParameter("password"));
+	    SimpleDateFormat formatter2=new SimpleDateFormat("yyyy-MM-dd");  
+
+
+		
 		ModeloUsuario insertarU = new ModeloUsuario();
 		insertarU.insertarUsuario(nuevoUsuario);
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios");

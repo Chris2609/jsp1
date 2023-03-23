@@ -52,7 +52,7 @@ public class ModUsuario extends HttpServlet {
 		usuarioModificado.setNombre(request.getParameter("nombre"));
 		usuarioModificado.setPassword(request.getParameter("password"));
 		ModeloUsuario modificarU = new ModeloUsuario();
-		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);
+		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);	
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
 	}
 

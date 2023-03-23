@@ -30,7 +30,7 @@
 	
 	<input type="hidden" name="id" value="<%out.print(id);%>">
 	<input type="text" name="nombre" placeholder="Nombre de usuario" value="<%out.print(nombre);%>"/>
-	<input type="text" name="password" placeholder="Contraseña" value="<%out.print(password);%>">
+	<input type="text" name="password" placeholder="Contraseña" value="<%out.print(password);%>"/>
 	
 	<input type="submit" value="Enviar"/>
 	</form>

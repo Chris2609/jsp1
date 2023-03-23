@@ -1,8 +1,12 @@
 package modelo;
 
+import java.util.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ModeloUsuario {
@@ -12,6 +16,7 @@ public class ModeloUsuario {
 	public ArrayList<Usuario> verUsuarios() {
 		conexion.conectar();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+
 			try {
 				PreparedStatement verU = conexion.getCon().prepareStatement("SELECT * FROM usuarios");
 				verU.execute();
@@ -24,7 +29,8 @@ public class ModeloUsuario {
 					usuario.setId(resultado.getInt("id"));
 					usuario.setNombre(resultado.getString("nombre"));
 					usuario.setPassword(resultado.getString("password"));
-					
+					usuario.setFecha_login(resultado.getDate("fecha_login"));
+
 					usuarios.add(usuario);
 				}
 				
@@ -69,7 +75,7 @@ public class ModeloUsuario {
 		
 		PreparedStatement insertarU;
 		try {
-			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password) VALUES (?,?)");
+			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES (?,?,?)");
 			insertarU.setString(1, usuario.getNombre());
 			insertarU.setString(2, usuario.getPassword());
 			insertarU.execute();

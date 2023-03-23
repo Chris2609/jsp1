@@ -1,11 +1,22 @@
 package modelo;
 
+import java.util.Date;
+
 public class Usuario {
 
 	int id;
 	String nombre;
 	String password;
+	Date fecha_login;
 	
+	
+	
+	public Date getFecha_login() {
+		return fecha_login;
+	}
+	public void setFecha_login(Date fecha_login) {
+		this.fecha_login = fecha_login;
+	}
 	public String getPassword() {
 		return password;
 	}
