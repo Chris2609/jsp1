@@ -1,6 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +37,20 @@ public class ModUsuario extends HttpServlet {
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		String password = request.getParameter("password");
+		Date fecha_login = null;
 		
+        try {
+			fecha_login = new SimpleDateFormat("dd-MM-yyyy").parse(request.getParameter("fecha_login"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+
 		request.setAttribute("id", Integer.parseInt(id));
 		request.setAttribute("nombre", nombre);
 		request.setAttribute("password", password);
-		
+        request.setAttribute("fecha_login", fecha_login);
+
 		request.getRequestDispatcher("ModUsuario.jsp").forward(request, response);
 	}
 
@@ -51,6 +64,15 @@ public class ModUsuario extends HttpServlet {
 		Usuario usuarioModificado = new Usuario();
 		usuarioModificado.setNombre(request.getParameter("nombre"));
 		usuarioModificado.setPassword(request.getParameter("password"));
+		
+		Date fecha_login = null;
+		try {
+			fecha_login = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("fecha_login"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		usuarioModificado.setFecha_login(fecha_login);
+		
 		ModeloUsuario modificarU = new ModeloUsuario();
 		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);	
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios");

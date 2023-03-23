@@ -58,10 +58,11 @@ public class ModeloUsuario {
 		conexion.conectar();
 		
 		try {
-			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ?, password = ? WHERE id = ?");
+			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ?, password = ?, fecha_login = ? WHERE id = ?");
 			modificarU.setString(1, usuario.getNombre());
 			modificarU.setString(2, usuario.getPassword());
-			modificarU.setInt(3, id);
+			modificarU.setDate(3, new Date(usuario.getFecha_login().getTime()));
+			modificarU.setInt(4, id);
 			modificarU.execute();
 			
 			conexion.cerrar();

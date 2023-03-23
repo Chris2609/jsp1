@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 	int id = (int) request.getAttribute("id");
 	String nombre = (String) request.getAttribute("nombre");
 	String password = (String) request.getAttribute("password");
+	Date fecha_login = (Date) request.getAttribute("fecha_login");
 	%>
 
 	<form method="POST" action="ModUsuario">
@@ -31,7 +33,7 @@
 	<input type="hidden" name="id" value="<%out.print(id);%>">
 	<input type="text" name="nombre" placeholder="Nombre de usuario" value="<%out.print(nombre);%>"/>
 	<input type="text" name="password" placeholder="Contraseña" value="<%out.print(password);%>"/>
-	
+	<input type="date" name="fecha_login" value="<%out.print(fecha_login);%>"/>
 	<input type="submit" value="Enviar"/>
 	</form>
 	

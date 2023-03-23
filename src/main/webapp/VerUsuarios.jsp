@@ -35,7 +35,7 @@
       <td><%out.println(usuario.getNombre()); %></td>
       <td><%out.println(usuario.getPassword()); %></td>
       <td><%out.println(usuario.getFecha_login()); %></td>
-      <td><a href="/JSPusuarios/ModUsuario?id=<%out.print(usuario.getId());%>&nombre=<%out.print(usuario.getNombre());%>&password=<%out.print(usuario.getPassword());%>">Modificar</a></td>
+      <td><a href="/JSPusuarios/ModUsuario?id=<%out.print(usuario.getId());%>&nombre=<%out.print(usuario.getNombre());%>&password=<%out.print(usuario.getPassword());%>&fecha_login=<%out.print(usuario.getFecha_login());%>">Modificar</a></td>
       <td><a style="color:red;" href="/JSPusuarios/Eliminar?id=<%out.print(usuario.getId());%>">Eliminar</td>
     </tr>
     <%
