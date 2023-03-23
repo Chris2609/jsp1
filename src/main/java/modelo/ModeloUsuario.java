@@ -78,6 +78,7 @@ public class ModeloUsuario {
 			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES (?,?,?)");
 			insertarU.setString(1, usuario.getNombre());
 			insertarU.setString(2, usuario.getPassword());
+			
 			insertarU.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
