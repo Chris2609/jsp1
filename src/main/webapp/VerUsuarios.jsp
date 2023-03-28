@@ -2,6 +2,9 @@
 <%@ page import= "modelo.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +33,10 @@
   <tbody>
   	<%for(Usuario usuario : usuarios){
     	%>
+    	
+    	<c:forEach items="${usuarios}" var="usuario">
+    	${usuario.id}
+    	</c:forEach>
     <tr>
       <td><%out.println(usuario.getId()); %></td>
       <td><%out.println(usuario.getNombre()); %></td>

@@ -7,7 +7,8 @@ public class Usuario {
 	int id;
 	String nombre;
 	String password;
-	Date fecha_login;	
+	Date fecha_login;
+	Rol rol = new Rol();
 	
 	public Date getFecha_login() {
 		return fecha_login;
@@ -32,6 +33,12 @@ public class Usuario {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	
 	
