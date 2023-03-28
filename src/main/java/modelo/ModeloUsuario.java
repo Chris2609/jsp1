@@ -16,6 +16,7 @@ public class ModeloUsuario {
 	public ArrayList<Usuario> verUsuarios() {
 		conexion.conectar();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		ModeloRoles mr = new ModeloRoles();
 
 			try {
 				PreparedStatement verU = conexion.getCon().prepareStatement("SELECT * FROM usuarios");
@@ -30,7 +31,8 @@ public class ModeloUsuario {
 					usuario.setNombre(resultado.getString("nombre"));
 					usuario.setPassword(resultado.getString("password"));
 					usuario.setFecha_login(resultado.getDate("fecha_login"));
-
+					usuario.setRol(mr.cargarRol(resultado.getInt("id_rol")));
+					
 					usuarios.add(usuario);
 				}
 				
@@ -76,10 +78,11 @@ public class ModeloUsuario {
 		
 		PreparedStatement insertarU;
 		try {
-			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login) VALUES (?,?,?)");
+			insertarU = conexion.getCon().prepareStatement("INSERT INTO usuarios (nombre, password, fecha_login, id_rol) VALUES (?,?,?,?)");
 			insertarU.setString(1, usuario.getNombre());
 			insertarU.setString(2, usuario.getPassword());
 			insertarU.setDate(3, new Date(usuario.getFecha_login().getTime()));
+			insertarU.setInt(4, usuario.getRol().getId());
 			insertarU.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

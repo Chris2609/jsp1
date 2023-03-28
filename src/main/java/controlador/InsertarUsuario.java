@@ -1,7 +1,7 @@
 package controlador;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Conector;
+import modelo.ModeloRoles;
 import modelo.ModeloUsuario;
+import modelo.Rol;
 import modelo.Usuario;
 
 /**
@@ -38,6 +40,9 @@ public class InsertarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		ModeloRoles verRoles = new ModeloRoles();
+		ArrayList<Rol> roles = verRoles.getRoles();
+		request.setAttribute("roles", roles);
 		request.getRequestDispatcher("InsertarUsuario.jsp").forward(request, response);
 	}
 
@@ -50,6 +55,9 @@ public class InsertarUsuario extends HttpServlet {
 		Usuario nuevoUsuario = new Usuario();
 		nuevoUsuario.setNombre(request.getParameter("nuevoUsuario"));
 		nuevoUsuario.setPassword(request.getParameter("password"));
+		Rol rol = new Rol();
+		rol.setId(Integer.parseInt(request.getParameter("id_rol")));
+		nuevoUsuario.setRol(rol);
 		
 		Date fecha_login = null;
         try {

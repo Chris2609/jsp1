@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="modelo.*" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,11 @@
         crossorigin="anonymous">
 </head>
 <body>
+
+<%	
+	ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles"); 
+	%>
+	
   <style>
   *{
   margin: 10px}
@@ -35,6 +42,17 @@
       <p>   
      <input type="date" name="fecha_login" pattern="yyyy-MM-dd">
        </p>
+      
+     <select class="select"  name="id_rol" >
+  		<option value="0"></option>
+  		
+  	<%for(Rol rol : roles){ %>
+  		<option value="<%out.print(rol.getId());%>"><%out.print(rol.getNombre());%></option>
+	<%} %>
+
+	</select>
+      
+      
 	<input type="submit" value="Enviar"/>
 	
 	</form>
