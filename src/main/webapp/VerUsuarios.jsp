@@ -47,7 +47,7 @@
       <td><c:out value="${usuario.rol.nombre}"></c:out>
       
       <td>
-      <a href="/JSPusuarios/ModUsuario?id=<c:out value ="${usuario.id}"></c:out>&nombre=<c:out value = "${usuario.nombre}"></c:out>&password=<c:out value = "${usuario.password}"></c:out>&fecha_login=<c:out value = "${usuario.fecha_login}"></c:out>">Modificar</a>
+      <a href="/JSPusuarios/ModUsuario?id=<c:out value ="${usuario.id}"></c:out>&nombre=<c:out value = "${usuario.nombre}"></c:out>&password=<c:out value = "${usuario.password}"></c:out>&fecha_login=<c:out value = "${usuario.fecha_login}"></c:out>&rolMod=<c:out value = "${usuario.rol.id}"></c:out>">Modificar</a>
       </td>
       
       <td>

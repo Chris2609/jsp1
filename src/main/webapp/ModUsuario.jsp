@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
+<%@ page import="modelo.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,9 @@
 	String nombre = (String) request.getAttribute("nombre");
 	String password = (String) request.getAttribute("password");
 	Date fecha_login = (Date) request.getAttribute("fecha_login");
+	int rolMod = (int) request.getAttribute("rolMod");
+	ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles"); 
+
 	%>
 
 	<form method="POST" action="ModUsuario">
@@ -34,6 +38,21 @@
 	<input type="text" name="nombre" placeholder="Nombre de usuario" value="<%out.print(nombre);%>"/>
 	<input type="text" name="password" placeholder="Contraseña" value="<%out.print(password);%>"/>
 	<input type="date" name="fecha_login" value="<%out.print(fecha_login);%>"/>
+	
+	<select class="select"  name="id_rol" >
+
+	<%if(0 == rolMod){%>
+  		<option value="0" selected="selected">Selecciona un rol</option>
+  	<%} %>	
+	
+	<%for(Rol rol : roles){ %>
+	
+  		<option value="<%out.print(rol.getId());%>" <%if(rol.getId() == rolMod){%>selected="selected"<%} %>><%out.print(rol.getNombre());%></option>
+  		
+	<%} %>
+
+	</select>
+	
 	<input type="submit" value="Enviar"/>
 	</form>
 	

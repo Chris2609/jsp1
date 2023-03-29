@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.Date;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class ModeloUsuario {
 	public ArrayList<Usuario> verUsuarios() {
 		conexion.conectar();
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		
 		ModeloRoles mr = new ModeloRoles();
 
 			try {
@@ -60,11 +62,12 @@ public class ModeloUsuario {
 		conexion.conectar();
 		
 		try {
-			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ?, password = ?, fecha_login = ? WHERE id = ?");
+			PreparedStatement modificarU = conexion.getCon().prepareStatement("UPDATE usuarios SET nombre = ?, password = ?, fecha_login = ?, id_rol = ? WHERE id = ?");
 			modificarU.setString(1, usuario.getNombre());
 			modificarU.setString(2, usuario.getPassword());
 			modificarU.setDate(3, new Date(usuario.getFecha_login().getTime()));
-			modificarU.setInt(4, id);
+			modificarU.setInt(4, usuario.getRol().getId());
+			modificarU.setInt(5, id);
 			modificarU.execute();
 			
 			conexion.cerrar();
