@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.ModeloUsuario;
 import modelo.Usuario;
@@ -39,8 +40,18 @@ public class VerUsuarios extends HttpServlet {
 		
 		request.setAttribute("usuarios", usuarios);
 
+
+		HttpSession session = request.getSession();
+		String usuario = "nada";
+		usuario = (String) session.getAttribute("usuario");
+
+		if (usuario == null) {
+			response.sendRedirect("Login");
+		} else {
+			request.getRequestDispatcher("VerUsuarios.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("VerUsuarios.jsp").forward(request, response);
+	}
+		
 	}
 
 	/**

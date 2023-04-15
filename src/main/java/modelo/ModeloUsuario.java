@@ -88,4 +88,28 @@ public class ModeloUsuario {
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean comprobarUsuarioContra(String usuario, String contrasena){
+		conexion.conectar();
+		
+		boolean entra = false;
+		PreparedStatement comprobar;
+		
+		try {
+			comprobar = conexion.getCon().prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND password = ?");
+			comprobar.setString(1, usuario);
+			comprobar.setString(2, contrasena);
+			comprobar.execute();
+			
+			ResultSet resultado = comprobar.executeQuery();
+			
+			while(resultado.next()) {
+				entra = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return entra;
+	}
 }
