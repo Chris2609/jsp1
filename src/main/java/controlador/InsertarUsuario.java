@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Conector;
 import modelo.ModeloRoles;
@@ -70,7 +71,11 @@ public class InsertarUsuario extends HttpServlet {
 		
 		ModeloUsuario insertarU = new ModeloUsuario();
 		insertarU.insertarUsuario(nuevoUsuario);
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
+		
+		HttpSession rol2 = request.getSession();
+		int rolUsuario = (Integer) rol2.getAttribute("rol");
+				
+		response.sendRedirect(request.getContextPath() + "/VerUsuarios?rol="+rolUsuario);
 
 	}
 

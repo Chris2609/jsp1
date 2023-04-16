@@ -112,4 +112,28 @@ public class ModeloUsuario {
 		
 		return entra;
 	}
+	
+	public int obtenerRol(Usuario usuario){
+		int rol = 0;
+		
+		PreparedStatement obtenerRol;
+		try {
+			obtenerRol = conexion.getCon().prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND password = ?");
+			obtenerRol.setString(1, usuario.getNombre());
+			obtenerRol.setString(2, usuario.getPassword());
+			
+			obtenerRol.execute();
+			
+			ResultSet resultado = obtenerRol.executeQuery();
+			
+			while(resultado.next()) {
+				rol = resultado.getInt("id_rol");
+				
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rol;
+	}
 }

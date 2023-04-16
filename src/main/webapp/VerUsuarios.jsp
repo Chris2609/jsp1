@@ -15,12 +15,22 @@
 <body>
 
 	<%	
-	ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios"); 
+	ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
+	Integer rolUsuario = (Integer) request.getAttribute("rolUsuario");
+	String nombreUsuario = (String) request.getAttribute("nombreUsuario");
 	%>
+	
+<%if(rolUsuario == 1){ %>	
 <a href="/JSPusuarios/InsertarUsuario" class= "btn btn-success">Insertar</a>
+<%}else if (rolUsuario == 2){ %>
+<a style="pointer-events: none; cursor: default; text-decoration: line-through;" href="/JSPusuarios/InsertarUsuario" class= "btn btn-success" style="pointer-events: none; cursor: default;">Insertar</a>
+
+<%} %>
+
+<a href="/JSPusuarios/Login" class= "btn btn-dark">Cerrar sesion</a>
+
 <table class="table table-striped table-dark">
   <thead>
-    
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Usuario</th>
@@ -47,11 +57,33 @@
       <td><c:out value="${usuario.rol.nombre}"></c:out>
       
       <td>
+      <%if(rolUsuario == 1){ %>	
       <a href="/JSPusuarios/ModUsuario?id=<c:out value ="${usuario.id}"></c:out>&nombre=<c:out value = "${usuario.nombre}"></c:out>&password=<c:out value = "${usuario.password}"></c:out>&fecha_login=<c:out value = "${usuario.fecha_login}"></c:out>">Modificar</a>
-      </td>
+      <%}else if(rolUsuario == 2){%>
       
+ 		<c:if test = "${usuario.nombre == nombreUsuario}">
+          <a href="/JSPusuarios/ModUsuario?id=<c:out value ="${usuario.id}"></c:out>&nombre=<c:out value = "${usuario.nombre}"></c:out>&password=<c:out value = "${usuario.password}"></c:out>&fecha_login=<c:out value = "${usuario.fecha_login}"></c:out>">Modificar</a>
+        </c:if>
+    	
+    	<c:if test = "${usuario.nombre != nombreUsuario}">
+    	  <a style="pointer-events: none; cursor: default; text-decoration:line-through;" href="/JSPusuarios/ModUsuario?id=<c:out value ="${usuario.id}"></c:out>&nombre=<c:out value = "${usuario.nombre}"></c:out>&password=<c:out value = "${usuario.password}"></c:out>&fecha_login=<c:out value = "${usuario.fecha_login}"></c:out>">Modificar</a>
+        </c:if>
+    <%} %>
+      </td>
+
       <td>
-      <a style="color:red;" href="/JSPusuarios/Eliminar?id=<c:out value ="${usuario.id}"></c:out>">Eliminar</td>
+      <%if(rolUsuario == 1){ %>	
+      <a style="color:red;" href="/JSPusuarios/Eliminar?id=<c:out value ="${usuario.id}"></c:out>">Eliminar</a>
+      <%}else if(rolUsuario == 2){%>
+      <c:if test = "${usuario.nombre == nombreUsuario}">
+      <a style="color:red;" href="/JSPusuarios/Eliminar?id=<c:out value ="${usuario.id}"></c:out>">Eliminar</a>
+        </c:if>
+    	
+    	<c:if test = "${usuario.nombre != nombreUsuario}">
+      <a style="color:red; pointer-events: none; cursor: default; text-decoration:line-through;" href="/JSPusuarios/Eliminar?id=<c:out value ="${usuario.id}"></c:out>">Eliminar</a>
+        </c:if>
+      <%} %>
+      </td>
   
     </tr>
        	</c:forEach>

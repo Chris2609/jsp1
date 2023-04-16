@@ -40,18 +40,20 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.getSession().invalidate();
 		Usuario usuario = new Usuario();
 		usuario.setNombre(request.getParameter("usuario"));
 		usuario.setPassword(request.getParameter("contrasena"));
-		request.getSession().invalidate();
 		ModeloUsuario comprobar = new ModeloUsuario();
 		
 		boolean compro = comprobar.comprobarUsuarioContra(usuario);
 		
 		if(compro == true) {
+			int rol = 0;
+			rol = comprobar.obtenerRol(usuario);
 			HttpSession session = request.getSession();
 			session.setAttribute("usuario", usuario);
-			response.sendRedirect(request.getContextPath() + "/VerUsuarios");
+			response.sendRedirect(request.getContextPath() + "/VerUsuarios?rol="+rol+"&"+"nombre="+usuario.getNombre());
 		}else {
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.ModeloUsuario;
 import modelo.Usuario;
@@ -51,6 +52,8 @@ public class ModUsuario extends HttpServlet {
 		request.setAttribute("password", password);
         request.setAttribute("fecha_login", fecha_login);
 
+        
+        
 		request.getRequestDispatcher("ModUsuario.jsp").forward(request, response);
 	}
 
@@ -74,8 +77,16 @@ public class ModUsuario extends HttpServlet {
 		usuarioModificado.setFecha_login(fecha_login);
 		
 		ModeloUsuario modificarU = new ModeloUsuario();
-		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);	
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
+		modificarU.modificarUsuario(Integer.parseInt(id), usuarioModificado);
+		
+		HttpSession rol = request.getSession();
+		int rolUsuario = (Integer) rol.getAttribute("rol");
+		
+		HttpSession session = request.getSession();
+		Usuario usuario = new Usuario();
+		usuario = (Usuario) session.getAttribute("usuario");
+		
+		response.sendRedirect(request.getContextPath() + "/VerUsuarios?rol="+rolUsuario+"&nombre="+usuario.getNombre());
 	}
 
 }

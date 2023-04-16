@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.ModeloUsuario;
 
@@ -34,7 +35,9 @@ public class Eliminar extends HttpServlet {
 		String id = request.getParameter("id");
 		verUsuarios.eliminarUsuario(Integer.parseInt(id));
 		
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
+		HttpSession rol = request.getSession();
+		int rolUsuario = (Integer) rol.getAttribute("rol");
+		response.sendRedirect(request.getContextPath() + "/VerUsuarios?rol="+rolUsuario);
 
 	}
 

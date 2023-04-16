@@ -42,14 +42,23 @@ public class VerUsuarios extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
-		Usuario usuario = new Usuario();;
+		Usuario usuario = new Usuario();
 		usuario = (Usuario) session.getAttribute("usuario");
-
+		
+		int rolUsuario = 0;
+		rolUsuario = Integer.parseInt(request.getParameter("rol"));
+		request.setAttribute("rolUsuario", rolUsuario);
+		
+		String nombreUsuario = request.getParameter("nombre");
+		request.setAttribute("nombreUsuario", nombreUsuario);
+		
+		HttpSession rol = request.getSession();
+		rol.setAttribute("rol", rolUsuario);
 		if (usuario == null) {
 			response.sendRedirect("Login");
 		} else {
 			request.getRequestDispatcher("VerUsuarios.jsp").forward(request, response);
-		
+	
 	}
 		
 	}
