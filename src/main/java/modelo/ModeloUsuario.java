@@ -89,7 +89,7 @@ public class ModeloUsuario {
 		}
 	}
 	
-	public boolean comprobarUsuarioContra(String usuario, String contrasena){
+	public boolean comprobarUsuarioContra(Usuario usuario){
 		conexion.conectar();
 		
 		boolean entra = false;
@@ -97,8 +97,8 @@ public class ModeloUsuario {
 		
 		try {
 			comprobar = conexion.getCon().prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND password = ?");
-			comprobar.setString(1, usuario);
-			comprobar.setString(2, contrasena);
+			comprobar.setString(1, usuario.getNombre());
+			comprobar.setString(2, usuario.getPassword());
 			comprobar.execute();
 			
 			ResultSet resultado = comprobar.executeQuery();

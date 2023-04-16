@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import modelo.ModeloUsuario;
+import modelo.*;
 
 /**
  * Servlet implementation class Login
@@ -39,12 +40,13 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String usuario = request.getParameter("usuario");
-		String contrasena = request.getParameter("contrasena");
+		Usuario usuario = new Usuario();
+		usuario.setNombre(request.getParameter("usuario"));
+		usuario.setPassword(request.getParameter("contrasena"));
 		request.getSession().invalidate();
 		ModeloUsuario comprobar = new ModeloUsuario();
 		
-		boolean compro = comprobar.comprobarUsuarioContra(usuario, contrasena);
+		boolean compro = comprobar.comprobarUsuarioContra(usuario);
 		
 		if(compro == true) {
 			HttpSession session = request.getSession();

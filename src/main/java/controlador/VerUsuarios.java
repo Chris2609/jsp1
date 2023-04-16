@@ -42,8 +42,8 @@ public class VerUsuarios extends HttpServlet {
 
 
 		HttpSession session = request.getSession();
-		String usuario = "nada";
-		usuario = (String) session.getAttribute("usuario");
+		Usuario usuario = new Usuario();;
+		usuario = (Usuario) session.getAttribute("usuario");
 
 		if (usuario == null) {
 			response.sendRedirect("Login");
